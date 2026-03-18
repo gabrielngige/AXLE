@@ -1,4 +1,5 @@
-let grade = 44
+//assignment 1: grading system using if else statements.
+let grade = 80
 
 if (grade >= 79) {
   console.log("Grade A");
@@ -11,3 +12,5 @@ if (grade >= 79) {
 } else {
   console.log("Grade F");
 }
+
+  
