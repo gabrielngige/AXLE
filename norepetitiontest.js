@@ -7,6 +7,6 @@ console.log(sdft17[2]); // Output: "michael"
 
 //or we can use a loop to output all the elements in the array without repeating the code multiple times.
 
-for (let i = 0; i < sdft17.length; i++) {
+for (let i = 0; i < sdft17; i++) {
   console.log(sdft17[i]);
 }

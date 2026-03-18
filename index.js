@@ -1,4 +1,4 @@
-//assignment 1: grading system using if else statements.
+//assignment 1: grading
 let grade = 80
 
 if (grade >= 79) {
