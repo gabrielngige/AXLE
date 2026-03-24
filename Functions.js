@@ -166,26 +166,91 @@
 
 //Example of an arrow function:
 
-const add = (a, b) => {
-  return a + b;
-};
+// const add = (a, b) => {
+//   return a + b;
+// };
 
-console.log(add(5, 10)); // Output: 15
+// console.log(add(5, 10)); // Output: 15
 
-function calculate(a, b) {
-  const multiply = (x, y) => x * y; // Arrow function for multiplication
-  const divide = (x, y) => x / y;   // Arrow function for division
-  const sum = (x, y) => x + y;      // Arrow function for addition
-  const subtraction = (x, y) => x - y; // Arrow function for subtraction
+// function calculate(a, b) {
+//   const multiply = (x, y) => x * y; // Arrow function for multiplication
+//   const divide = (x, y) => x / y;   // Arrow function for division
+//   const sum = (x, y) => x + y;      // Arrow function for addition
+//   const subtraction = (x, y) => x - y; // Arrow function for subtraction
 
-  return { multiply, divide, sum, subtraction }; // Returning an object containing the arrow functions
+//   return { multiply, divide, sum, subtraction }; // Returning an object containing the arrow functions
+// }
+
+// let operations = calculate(10, 5);
+// console.log(operations.multiply(10, 5)); // Output: 50
+// console.log(operations.divide(10, 5));   // Output: 2
+// console.log(operations.sum(10, 5));      // Output: 15
+// console.log(operations.subtraction(10, 5)); // Output: 5
+
+//callback functions
+
+//A callback function is a function that is passed as an argument to another function and is executed after a certain event or condition is met. 
+// Callback functions are commonly used in asynchronous programming, event handling, and higher-order functions.
+
+//Example of a callback function:
+
+function fetchData(callback) {
+  setTimeout(() => {
+    const data = "Data fetched from the server.";
+    callback(data); // Calling the callback function with the fetched data
+  }, 2000);
 }
 
-let operations = calculate(10, 5);
-console.log(operations.multiply(10, 5)); // Output: 50
-console.log(operations.divide(10, 5));   // Output: 2
-console.log(operations.sum(10, 5));      // Output: 15
-console.log(operations.subtraction(10, 5)); // Output: 5
+fetchData(function(result) {
+  console.log(result); // Output: "Data fetched from the server."
+});
+
+//example
+
+function calculator(func) {
+  const a = 10;
+  const b = 5;
+  return func(a, b); // Calling the callback function with the values of a and b
+}
+
+const sumResult = calculator((x, y) => x + y); // Passing an arrow function as a callback for addition
+const multiplyResult = calculator((x, y) => x * y); // Passing an arrow function as a callback for multiplication
+
+console.log(sumResult); // Output: 15
+console.log(multiplyResult); // Output: 50
+
+//example
+
+function calculator(num1, num2,func) {
+  func(num1, num2); // Calling the callback function with the values of num1 and num2
+
+}
+
+function addition() {
+  console.log("addition", num1 + num2);
+  
+}
+
+calculator(addition); // Output: "addition"
+
+//callback function using array method
+
+let numbers = [1, 2, 3, 4, 5];
+
+numbers.forEach(function(num) {
+  console.log(num); // Output: 1, 2, 3, 4, 5 (each number is logged to the console)
+});
+
+//callback function using object method
+
+let person = {
+  name: "Gabriel",
+  age: 24
+};
+
+console.log(person.name); // Output: "Gabriel"
+console.log(person.age); // Output: 24
+
 
 //In summary, function declarations are hoisted and can be called before they are defined, while function expressions are not hoisted and cannot be called before they are defined. 
 // Both function declarations and function expressions can be used to define functions in JavaScript, and the choice between them often depends on personal preference and coding style.
