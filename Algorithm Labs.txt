@@ -1,0 +1,50 @@
+Step 1: Requirements Analysis (Inputs & Outputs)
+Savings Goal:
+Input: User ID, Target Amount, Target Date.
+Output: Confirmation of stored goal.
+Savings Progress:
+Input: Deposit amount.
+Output: Updated total "Amount Saved."
+Savings Goal Status:
+Input: User ID.
+Output: Return progress percentage or remaining balance.
+Savings Goal Notification:
+Input: Current Date, Target Date, Amount Saved.
+Output: Compose and Send alert if behind schedule.
+Step 2: Design
+// FUNCTION 1: Set up a new goal
+BEGIN CreateSavingsGoal
+    INPUT UserID, TargetAmount, TargetDate
+    STORE UserID, TargetAmount, TargetDate, AmountSaved = 0
+    RETURN "Goal successfully created!"
+END
+
+// FUNCTION 2: Update the progress when a user saves money
+BEGIN UpdateSavingsProgress
+    RETRIEVE UserID, AmountSaved
+    INPUT DepositAmount
+    SET AmountSaved = AmountSaved + DepositAmount
+    STORE Updated AmountSaved
+    RETURN AmountSaved
+END
+
+// FUNCTION 3: Check if the user is on track
+BEGIN CheckGoalStatus
+    RETRIEVE TargetAmount, AmountSaved, TargetDate
+    SET CurrentDate = GetSystemDate()
+    
+    // Logic for Notification
+    IF (CurrentDate is close to TargetDate) AND (AmountSaved < TargetAmount) THEN
+        CALL SendGoalNotification
+    ELSE
+        RETURN "You are on track!"
+    ENDIF
+END
+
+// FUNCTION 4: Alert the user
+BEGIN SendGoalNotification
+    COMPOSE Message "Alert: Your goal date is approaching, but your target hasn't been met yet!"
+    SEND Message to UserID via MobilePush
+END
+
+
